@@ -14,7 +14,7 @@ namespace rxApi.Controllers
         EMRDataRxEntities db = new EMRDataRxEntities();
 
         [HttpGet]
-        public HttpResponseMessage getPrescriptions()
+        public HttpResponseMessage getRx()
         {
             try
             {
@@ -23,6 +23,21 @@ namespace rxApi.Controllers
             }
             catch (Exception ex)
             {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+        [HttpPost]
+        public HttpResponseMessage setRx(Prescription p)
+        {
+            try
+            {
+                db.Prescription.Add(p);
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, p.DocUName);
+            }
+            catch (Exception ex)
+            {
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
         }

@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EMRDataRxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Drugs">
+    <Key>
+      <PropertyRef Name="Did" />
+    </Key>
+    <Property Name="Did" Type="int" Nullable="false" />
+    <Property Name="DName" Type="varchar" MaxLength="255" />
+    <Property Name="Dstatus" Type="int" />
+    <Property Name="DType" Type="varchar" MaxLength="255" />
+    <Property Name="ExpDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="username" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="255" />
+    <Property Name="Name" Type="varchar" MaxLength="255" />
+    <Property Name="Gender" Type="varchar" MaxLength="1" />
+    <Property Name="lat" Type="float" />
+    <Property Name="long" Type="float" />
+    <Property Name="disease" Type="varchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="Prescription">
+    <Key>
+      <PropertyRef Name="rxid" />
+    </Key>
+    <Property Name="rxid" Type="int" Nullable="false" />
+    <Property Name="rxDate" Type="datetime" />
+    <Property Name="DocUName" Type="varchar" MaxLength="255" />
+    <Property Name="PharmacyUName" Type="varchar" MaxLength="255" />
+    <Property Name="PatientUName" Type="varchar" MaxLength="255" />
+    <Property Name="rxStatus" Type="int" />
+  </EntityType>
+  <EntityType Name="RxHaveDrugs">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="rxidFK" Type="int" />
+    <Property Name="company" Type="varchar" MaxLength="155" />
+    <Property Name="method" Type="varchar" MaxLength="100" />
+    <Property Name="drugs" Type="varchar" MaxLength="1000" />
+    <Property Name="Note" Type="varchar" MaxLength="1000" />
+    <Property Name="type" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK__RxHaveDru__rxidF__59063A47">
+    <End Role="Prescription" Type="Self.Prescription" Multiplicity="0..1" />
+    <End Role="RxHaveDrugs" Type="Self.RxHaveDrugs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prescription">
+        <PropertyRef Name="rxid" />
+      </Principal>
+      <Dependent Role="RxHaveDrugs">
+        <PropertyRef Name="rxidFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EMRDataRxModelStoreContainer">
+    <EntitySet Name="Drugs" EntityType="Self.Drugs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Prescription" EntityType="Self.Prescription" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RxHaveDrugs" EntityType="Self.RxHaveDrugs" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__RxHaveDru__rxidF__59063A47" Association="Self.FK__RxHaveDru__rxidF__59063A47">
+      <End Role="Prescription" EntitySet="Prescription" />
+      <End Role="RxHaveDrugs" EntitySet="RxHaveDrugs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

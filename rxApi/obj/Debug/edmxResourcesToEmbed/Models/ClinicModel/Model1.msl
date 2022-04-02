@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ClinicDataRxModelStoreContainer" CdmEntityContainer="ClinicDataRxEntities">
+    <EntitySetMapping Name="Clinic">
+      <EntityTypeMapping TypeName="ClinicDataRxModel.Clinic">
+        <MappingFragment StoreEntitySet="Clinic">
+          <ScalarProperty Name="clinicid" ColumnName="clinicid" />
+          <ScalarProperty Name="DusernameFK" ColumnName="DusernameFK" />
+          <ScalarProperty Name="CName" ColumnName="CName" />
+          <ScalarProperty Name="Lat" ColumnName="Lat" />
+          <ScalarProperty Name="Long" ColumnName="Long" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Doctor">
+      <EntityTypeMapping TypeName="ClinicDataRxModel.Doctor">
+        <MappingFragment StoreEntitySet="Doctor">
+          <ScalarProperty Name="DUsername" ColumnName="DUsername" />
+          <ScalarProperty Name="DPassword" ColumnName="DPassword" />
+          <ScalarProperty Name="DName" ColumnName="DName" />
+          <ScalarProperty Name="DSpeciality" ColumnName="DSpeciality" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EMRDataRxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EMRDataRxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Drugs">
           <Key>
             <PropertyRef Name="Did" />
@@ -48,6 +48,7 @@
           <Property Name="method" Type="varchar" MaxLength="100" />
           <Property Name="drugs" Type="varchar" MaxLength="1000" />
           <Property Name="Note" Type="varchar" MaxLength="1000" />
+          <Property Name="type" Type="varchar" MaxLength="100" />
         </EntityType>
         <Association Name="FK__RxHaveDru__rxidF__59063A47">
           <End Role="Prescription" Type="Self.Prescription" Multiplicity="0..1" />
@@ -71,8 +72,7 @@
             <End Role="RxHaveDrugs" EntitySet="RxHaveDrugs" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EMRDataRxModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -121,6 +121,7 @@
           <Property Name="drugs" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="Note" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Prescription" Relationship="Self.FK__RxHaveDru__rxidF__59063A47" FromRole="RxHaveDrugs" ToRole="Prescription" />
+          <Property Name="type" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK__RxHaveDru__rxidF__59063A47">
           <End Role="Prescription" Type="Self.Prescription" Multiplicity="0..1" />
@@ -189,6 +190,7 @@
           <EntitySetMapping Name="RxHaveDrugs">
             <EntityTypeMapping TypeName="EMRDataRxModel.RxHaveDrugs">
               <MappingFragment StoreEntitySet="RxHaveDrugs">
+                <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="rxidFK" ColumnName="rxidFK" />
                 <ScalarProperty Name="company" ColumnName="company" />

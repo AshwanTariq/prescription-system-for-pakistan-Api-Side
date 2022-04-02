@@ -20,6 +20,7 @@ namespace rxApi.Models.EMRModel
         public string method { get; set; }
         public string drugs { get; set; }
         public string Note { get; set; }
+        public string type { get; set; }
     
         public virtual Prescription Prescription { get; set; }
     }

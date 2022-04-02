@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EMRDataRxModelStoreContainer" CdmEntityContainer="EMRDataRxEntities">
+    <EntitySetMapping Name="Drugs">
+      <EntityTypeMapping TypeName="EMRDataRxModel.Drugs">
+        <MappingFragment StoreEntitySet="Drugs">
+          <ScalarProperty Name="Did" ColumnName="Did" />
+          <ScalarProperty Name="DName" ColumnName="DName" />
+          <ScalarProperty Name="Dstatus" ColumnName="Dstatus" />
+          <ScalarProperty Name="DType" ColumnName="DType" />
+          <ScalarProperty Name="ExpDate" ColumnName="ExpDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Patient">
+      <EntityTypeMapping TypeName="EMRDataRxModel.Patient">
+        <MappingFragment StoreEntitySet="Patient">
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="lat" ColumnName="lat" />
+          <ScalarProperty Name="long" ColumnName="long" />
+          <ScalarProperty Name="disease" ColumnName="disease" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prescription">
+      <EntityTypeMapping TypeName="EMRDataRxModel.Prescription">
+        <MappingFragment StoreEntitySet="Prescription">
+          <ScalarProperty Name="rxid" ColumnName="rxid" />
+          <ScalarProperty Name="rxDate" ColumnName="rxDate" />
+          <ScalarProperty Name="DocUName" ColumnName="DocUName" />
+          <ScalarProperty Name="PharmacyUName" ColumnName="PharmacyUName" />
+          <ScalarProperty Name="PatientUName" ColumnName="PatientUName" />
+          <ScalarProperty Name="rxStatus" ColumnName="rxStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RxHaveDrugs">
+      <EntityTypeMapping TypeName="EMRDataRxModel.RxHaveDrugs">
+        <MappingFragment StoreEntitySet="RxHaveDrugs">
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="rxidFK" ColumnName="rxidFK" />
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="method" ColumnName="method" />
+          <ScalarProperty Name="drugs" ColumnName="drugs" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EMRDataRxModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Drugs">
+    <Key>
+      <PropertyRef Name="Did" />
+    </Key>
+    <Property Name="Did" Type="Int32" Nullable="false" />
+    <Property Name="DName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Dstatus" Type="Int32" />
+    <Property Name="DType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ExpDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="lat" Type="Double" />
+    <Property Name="long" Type="Double" />
+    <Property Name="disease" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Prescription">
+    <Key>
+      <PropertyRef Name="rxid" />
+    </Key>
+    <Property Name="rxid" Type="Int32" Nullable="false" />
+    <Property Name="rxDate" Type="DateTime" Precision="3" />
+    <Property Name="DocUName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PharmacyUName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PatientUName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="rxStatus" Type="Int32" />
+    <NavigationProperty Name="RxHaveDrugs" Relationship="Self.FK__RxHaveDru__rxidF__59063A47" FromRole="Prescription" ToRole="RxHaveDrugs" />
+  </EntityType>
+  <EntityType Name="RxHaveDrugs">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="rxidFK" Type="Int32" />
+    <Property Name="company" Type="String" MaxLength="155" FixedLength="false" Unicode="false" />
+    <Property Name="method" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="drugs" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="Note" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Prescription" Relationship="Self.FK__RxHaveDru__rxidF__59063A47" FromRole="RxHaveDrugs" ToRole="Prescription" />
+    <Property Name="type" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK__RxHaveDru__rxidF__59063A47">
+    <End Role="Prescription" Type="Self.Prescription" Multiplicity="0..1" />
+    <End Role="RxHaveDrugs" Type="Self.RxHaveDrugs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prescription">
+        <PropertyRef Name="rxid" />
+      </Principal>
+      <Dependent Role="RxHaveDrugs">
+        <PropertyRef Name="rxidFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EMRDataRxEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Drugs" EntityType="Self.Drugs" />
+    <EntitySet Name="Patient" EntityType="Self.Patient" />
+    <EntitySet Name="Prescription" EntityType="Self.Prescription" />
+    <EntitySet Name="RxHaveDrugs" EntityType="Self.RxHaveDrugs" />
+    <AssociationSet Name="FK__RxHaveDru__rxidF__59063A47" Association="Self.FK__RxHaveDru__rxidF__59063A47">
+      <End Role="Prescription" EntitySet="Prescription" />
+      <End Role="RxHaveDrugs" EntitySet="RxHaveDrugs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

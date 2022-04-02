@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ClinicDataRxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Clinic">
+    <Key>
+      <PropertyRef Name="clinicid" />
+    </Key>
+    <Property Name="clinicid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DusernameFK" Type="varchar" MaxLength="150" />
+    <Property Name="CName" Type="varchar" MaxLength="155" />
+    <Property Name="Lat" Type="float" />
+    <Property Name="Long" Type="float" />
+  </EntityType>
+  <EntityType Name="Doctor">
+    <Key>
+      <PropertyRef Name="DUsername" />
+    </Key>
+    <Property Name="DUsername" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="DPassword" Type="varchar" MaxLength="150" />
+    <Property Name="DName" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="DSpeciality" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <Association Name="FK__Clinic__Dusernam__46E78A0C">
+    <End Role="Doctor" Type="Self.Doctor" Multiplicity="0..1" />
+    <End Role="Clinic" Type="Self.Clinic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="DUsername" />
+      </Principal>
+      <Dependent Role="Clinic">
+        <PropertyRef Name="DusernameFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ClinicDataRxModelStoreContainer">
+    <EntitySet Name="Clinic" EntityType="Self.Clinic" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Doctor" EntityType="Self.Doctor" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Clinic__Dusernam__46E78A0C" Association="Self.FK__Clinic__Dusernam__46E78A0C">
+      <End Role="Doctor" EntitySet="Doctor" />
+      <End Role="Clinic" EntitySet="Clinic" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

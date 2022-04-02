@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ClinicDataRxModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Clinic">
+    <Key>
+      <PropertyRef Name="clinicid" />
+    </Key>
+    <Property Name="clinicid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DusernameFK" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="CName" Type="String" MaxLength="155" FixedLength="false" Unicode="false" />
+    <Property Name="Lat" Type="Double" />
+    <Property Name="Long" Type="Double" />
+    <NavigationProperty Name="Doctor" Relationship="Self.FK__Clinic__Dusernam__46E78A0C" FromRole="Clinic" ToRole="Doctor" />
+  </EntityType>
+  <EntityType Name="Doctor">
+    <Key>
+      <PropertyRef Name="DUsername" />
+    </Key>
+    <Property Name="DUsername" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DPassword" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="DName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DSpeciality" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Clinic" Relationship="Self.FK__Clinic__Dusernam__46E78A0C" FromRole="Doctor" ToRole="Clinic" />
+  </EntityType>
+  <Association Name="FK__Clinic__Dusernam__46E78A0C">
+    <End Role="Doctor" Type="Self.Doctor" Multiplicity="0..1" />
+    <End Role="Clinic" Type="Self.Clinic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="DUsername" />
+      </Principal>
+      <Dependent Role="Clinic">
+        <PropertyRef Name="DusernameFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ClinicDataRxEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Clinic" EntityType="Self.Clinic" />
+    <EntitySet Name="Doctor" EntityType="Self.Doctor" />
+    <AssociationSet Name="FK__Clinic__Dusernam__46E78A0C" Association="Self.FK__Clinic__Dusernam__46E78A0C">
+      <End Role="Doctor" EntitySet="Doctor" />
+      <End Role="Clinic" EntitySet="Clinic" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
