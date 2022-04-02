@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ClinicDataRxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clinic">
+          <Key>
+            <PropertyRef Name="clinicid" />
+          </Key>
+          <Property Name="clinicid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DusernameFK" Type="varchar" MaxLength="150" />
+          <Property Name="CName" Type="varchar" MaxLength="155" />
+          <Property Name="Lat" Type="float" />
+          <Property Name="Long" Type="float" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="DUsername" />
+          </Key>
+          <Property Name="DUsername" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="DPassword" Type="varchar" MaxLength="150" />
+          <Property Name="DName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DSpeciality" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK__Clinic__Dusernam__46E78A0C">
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="0..1" />
+          <End Role="Clinic" Type="Self.Clinic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="DUsername" />
+            </Principal>
+            <Dependent Role="Clinic">
+              <PropertyRef Name="DusernameFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ClinicDataRxModelStoreContainer">
+          <EntitySet Name="Clinic" EntityType="Self.Clinic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doctor" EntityType="Self.Doctor" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Clinic__Dusernam__46E78A0C" Association="Self.FK__Clinic__Dusernam__46E78A0C">
+            <End Role="Doctor" EntitySet="Doctor" />
+            <End Role="Clinic" EntitySet="Clinic" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ClinicDataRxModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Clinic">
+          <Key>
+            <PropertyRef Name="clinicid" />
+          </Key>
+          <Property Name="clinicid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DusernameFK" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CName" Type="String" MaxLength="155" FixedLength="false" Unicode="false" />
+          <Property Name="Lat" Type="Double" />
+          <Property Name="Long" Type="Double" />
+          <NavigationProperty Name="Doctor" Relationship="Self.FK__Clinic__Dusernam__46E78A0C" FromRole="Clinic" ToRole="Doctor" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="DUsername" />
+          </Key>
+          <Property Name="DUsername" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DPassword" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="DName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DSpeciality" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Clinic" Relationship="Self.FK__Clinic__Dusernam__46E78A0C" FromRole="Doctor" ToRole="Clinic" />
+        </EntityType>
+        <Association Name="FK__Clinic__Dusernam__46E78A0C">
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="0..1" />
+          <End Role="Clinic" Type="Self.Clinic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="DUsername" />
+            </Principal>
+            <Dependent Role="Clinic">
+              <PropertyRef Name="DusernameFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ClinicDataRxEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clinic" EntityType="Self.Clinic" />
+          <EntitySet Name="Doctor" EntityType="Self.Doctor" />
+          <AssociationSet Name="FK__Clinic__Dusernam__46E78A0C" Association="Self.FK__Clinic__Dusernam__46E78A0C">
+            <End Role="Doctor" EntitySet="Doctor" />
+            <End Role="Clinic" EntitySet="Clinic" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ClinicDataRxModelStoreContainer" CdmEntityContainer="ClinicDataRxEntities">
+          <EntitySetMapping Name="Clinic">
+            <EntityTypeMapping TypeName="ClinicDataRxModel.Clinic">
+              <MappingFragment StoreEntitySet="Clinic">
+                <ScalarProperty Name="clinicid" ColumnName="clinicid" />
+                <ScalarProperty Name="DusernameFK" ColumnName="DusernameFK" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="Long" ColumnName="Long" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doctor">
+            <EntityTypeMapping TypeName="ClinicDataRxModel.Doctor">
+              <MappingFragment StoreEntitySet="Doctor">
+                <ScalarProperty Name="DUsername" ColumnName="DUsername" />
+                <ScalarProperty Name="DPassword" ColumnName="DPassword" />
+                <ScalarProperty Name="DName" ColumnName="DName" />
+                <ScalarProperty Name="DSpeciality" ColumnName="DSpeciality" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

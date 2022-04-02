@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EMRDataRxModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Prescription">
+    <Key>
+      <PropertyRef Name="rxid" />
+    </Key>
+    <Property Name="rxid" Type="Int32" Nullable="false" />
+    <Property Name="rxDate" Type="DateTime" Precision="3" />
+    <Property Name="DocUName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PharmacyUName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PatientUName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="rxStatus" Type="Int32" />
+    <NavigationProperty Name="RxHaveDrugs" Relationship="EMRDataRxModel.FK__RxHaveDru__rxidF__49C3F6B7" FromRole="Prescription" ToRole="RxHaveDrugs" />
+  </EntityType>
+  <EntityContainer Name="EMRDataRxEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Prescription" EntityType="Self.Prescription" />
+    <EntitySet Name="RxHaveDrugs" EntityType="EMRDataRxModel.RxHaveDrugs" />
+    <AssociationSet Name="FK__RxHaveDru__rxidF__49C3F6B7" Association="EMRDataRxModel.FK__RxHaveDru__rxidF__49C3F6B7">
+      <End Role="Prescription" EntitySet="Prescription" />
+      <End Role="RxHaveDrugs" EntitySet="RxHaveDrugs" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="RxHaveDrugs">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="rxidFK" Type="Int32" />
+    <Property Name="company" Type="String" MaxLength="155" FixedLength="false" Unicode="false" />
+    <Property Name="method" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="drugs" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Prescription" Relationship="EMRDataRxModel.FK__RxHaveDru__rxidF__49C3F6B7" FromRole="RxHaveDrugs" ToRole="Prescription" />
+  </EntityType>
+  <Association Name="FK__RxHaveDru__rxidF__49C3F6B7">
+    <End Type="EMRDataRxModel.Prescription" Role="Prescription" Multiplicity="0..1" />
+    <End Type="EMRDataRxModel.RxHaveDrugs" Role="RxHaveDrugs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prescription">
+        <PropertyRef Name="rxid" />
+      </Principal>
+      <Dependent Role="RxHaveDrugs">
+        <PropertyRef Name="rxidFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

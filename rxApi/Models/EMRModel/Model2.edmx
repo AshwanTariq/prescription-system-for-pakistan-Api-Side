@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EMRDataRxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Drugs">
+          <Key>
+            <PropertyRef Name="Did" />
+          </Key>
+          <Property Name="Did" Type="int" Nullable="false" />
+          <Property Name="DName" Type="varchar" MaxLength="255" />
+          <Property Name="Dstatus" Type="int" />
+          <Property Name="DType" Type="varchar" MaxLength="255" />
+          <Property Name="ExpDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="255" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="Gender" Type="varchar" MaxLength="1" />
+          <Property Name="lat" Type="float" />
+          <Property Name="long" Type="float" />
+          <Property Name="disease" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Prescription">
+          <Key>
+            <PropertyRef Name="rxid" />
+          </Key>
+          <Property Name="rxid" Type="int" Nullable="false" />
+          <Property Name="rxDate" Type="datetime" />
+          <Property Name="DocUName" Type="varchar" MaxLength="255" />
+          <Property Name="PharmacyUName" Type="varchar" MaxLength="255" />
+          <Property Name="PatientUName" Type="varchar" MaxLength="255" />
+          <Property Name="rxStatus" Type="int" />
+        </EntityType>
+        <EntityType Name="RxHaveDrugs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rxidFK" Type="int" />
+          <Property Name="company" Type="varchar" MaxLength="155" />
+          <Property Name="method" Type="varchar" MaxLength="100" />
+          <Property Name="drugs" Type="varchar" MaxLength="1000" />
+          <Property Name="Note" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <Association Name="FK__RxHaveDru__rxidF__59063A47">
+          <End Role="Prescription" Type="Self.Prescription" Multiplicity="0..1" />
+          <End Role="RxHaveDrugs" Type="Self.RxHaveDrugs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prescription">
+              <PropertyRef Name="rxid" />
+            </Principal>
+            <Dependent Role="RxHaveDrugs">
+              <PropertyRef Name="rxidFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EMRDataRxModelStoreContainer">
+          <EntitySet Name="Drugs" EntityType="Self.Drugs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prescription" EntityType="Self.Prescription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RxHaveDrugs" EntityType="Self.RxHaveDrugs" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__RxHaveDru__rxidF__59063A47" Association="Self.FK__RxHaveDru__rxidF__59063A47">
+            <End Role="Prescription" EntitySet="Prescription" />
+            <End Role="RxHaveDrugs" EntitySet="RxHaveDrugs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EMRDataRxModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Drugs">
+          <Key>
+            <PropertyRef Name="Did" />
+          </Key>
+          <Property Name="Did" Type="Int32" Nullable="false" />
+          <Property Name="DName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Dstatus" Type="Int32" />
+          <Property Name="DType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ExpDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="lat" Type="Double" />
+          <Property Name="long" Type="Double" />
+          <Property Name="disease" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Prescription">
+          <Key>
+            <PropertyRef Name="rxid" />
+          </Key>
+          <Property Name="rxid" Type="Int32" Nullable="false" />
+          <Property Name="rxDate" Type="DateTime" Precision="3" />
+          <Property Name="DocUName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PharmacyUName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PatientUName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="rxStatus" Type="Int32" />
+          <NavigationProperty Name="RxHaveDrugs" Relationship="Self.FK__RxHaveDru__rxidF__59063A47" FromRole="Prescription" ToRole="RxHaveDrugs" />
+        </EntityType>
+        <EntityType Name="RxHaveDrugs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rxidFK" Type="Int32" />
+          <Property Name="company" Type="String" MaxLength="155" FixedLength="false" Unicode="false" />
+          <Property Name="method" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="drugs" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Note" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Prescription" Relationship="Self.FK__RxHaveDru__rxidF__59063A47" FromRole="RxHaveDrugs" ToRole="Prescription" />
+        </EntityType>
+        <Association Name="FK__RxHaveDru__rxidF__59063A47">
+          <End Role="Prescription" Type="Self.Prescription" Multiplicity="0..1" />
+          <End Role="RxHaveDrugs" Type="Self.RxHaveDrugs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prescription">
+              <PropertyRef Name="rxid" />
+            </Principal>
+            <Dependent Role="RxHaveDrugs">
+              <PropertyRef Name="rxidFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EMRDataRxEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Drugs" EntityType="Self.Drugs" />
+          <EntitySet Name="Patient" EntityType="Self.Patient" />
+          <EntitySet Name="Prescription" EntityType="Self.Prescription" />
+          <EntitySet Name="RxHaveDrugs" EntityType="Self.RxHaveDrugs" />
+          <AssociationSet Name="FK__RxHaveDru__rxidF__59063A47" Association="Self.FK__RxHaveDru__rxidF__59063A47">
+            <End Role="Prescription" EntitySet="Prescription" />
+            <End Role="RxHaveDrugs" EntitySet="RxHaveDrugs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EMRDataRxModelStoreContainer" CdmEntityContainer="EMRDataRxEntities">
+          <EntitySetMapping Name="Drugs">
+            <EntityTypeMapping TypeName="EMRDataRxModel.Drugs">
+              <MappingFragment StoreEntitySet="Drugs">
+                <ScalarProperty Name="Did" ColumnName="Did" />
+                <ScalarProperty Name="DName" ColumnName="DName" />
+                <ScalarProperty Name="Dstatus" ColumnName="Dstatus" />
+                <ScalarProperty Name="DType" ColumnName="DType" />
+                <ScalarProperty Name="ExpDate" ColumnName="ExpDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patient">
+            <EntityTypeMapping TypeName="EMRDataRxModel.Patient">
+              <MappingFragment StoreEntitySet="Patient">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="lat" ColumnName="lat" />
+                <ScalarProperty Name="long" ColumnName="long" />
+                <ScalarProperty Name="disease" ColumnName="disease" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prescription">
+            <EntityTypeMapping TypeName="EMRDataRxModel.Prescription">
+              <MappingFragment StoreEntitySet="Prescription">
+                <ScalarProperty Name="rxid" ColumnName="rxid" />
+                <ScalarProperty Name="rxDate" ColumnName="rxDate" />
+                <ScalarProperty Name="DocUName" ColumnName="DocUName" />
+                <ScalarProperty Name="PharmacyUName" ColumnName="PharmacyUName" />
+                <ScalarProperty Name="PatientUName" ColumnName="PatientUName" />
+                <ScalarProperty Name="rxStatus" ColumnName="rxStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RxHaveDrugs">
+            <EntityTypeMapping TypeName="EMRDataRxModel.RxHaveDrugs">
+              <MappingFragment StoreEntitySet="RxHaveDrugs">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="rxidFK" ColumnName="rxidFK" />
+                <ScalarProperty Name="company" ColumnName="company" />
+                <ScalarProperty Name="method" ColumnName="method" />
+                <ScalarProperty Name="drugs" ColumnName="drugs" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

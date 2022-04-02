@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EMRDataRxModelStoreContainer" CdmEntityContainer="EMRDataRxEntities">
+    <EntitySetMapping Name="Prescription">
+      <EntityTypeMapping TypeName="EMRDataRxModel.Prescription">
+        <MappingFragment StoreEntitySet="Prescription">
+          <ScalarProperty Name="rxid" ColumnName="rxid" />
+          <ScalarProperty Name="rxDate" ColumnName="rxDate" />
+          <ScalarProperty Name="DocUName" ColumnName="DocUName" />
+          <ScalarProperty Name="PharmacyUName" ColumnName="PharmacyUName" />
+          <ScalarProperty Name="PatientUName" ColumnName="PatientUName" />
+          <ScalarProperty Name="rxStatus" ColumnName="rxStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RxHaveDrugs">
+      <EntityTypeMapping TypeName="EMRDataRxModel.RxHaveDrugs">
+        <MappingFragment StoreEntitySet="RxHaveDrugs">
+          <ScalarProperty Name="drugs" ColumnName="drugs" />
+          <ScalarProperty Name="method" ColumnName="method" />
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="rxidFK" ColumnName="rxidFK" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

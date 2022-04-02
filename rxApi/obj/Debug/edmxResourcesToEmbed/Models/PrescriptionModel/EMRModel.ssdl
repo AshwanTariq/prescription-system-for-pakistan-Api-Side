@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EMRDataRxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Prescription">
+    <Key>
+      <PropertyRef Name="rxid" />
+    </Key>
+    <Property Name="rxid" Type="int" Nullable="false" />
+    <Property Name="rxDate" Type="datetime" />
+    <Property Name="DocUName" Type="varchar" MaxLength="255" />
+    <Property Name="PharmacyUName" Type="varchar" MaxLength="255" />
+    <Property Name="PatientUName" Type="varchar" MaxLength="255" />
+    <Property Name="rxStatus" Type="int" />
+  </EntityType>
+  <EntityType Name="RxHaveDrugs">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="rxidFK" Type="int" />
+    <Property Name="company" Type="varchar" MaxLength="155" />
+    <Property Name="method" Type="varchar" MaxLength="100" />
+    <Property Name="drugs" Type="varchar" MaxLength="1000" />
+  </EntityType>
+  <Association Name="FK__RxHaveDru__rxidF__49C3F6B7">
+    <End Role="Prescription" Type="Self.Prescription" Multiplicity="0..1" />
+    <End Role="RxHaveDrugs" Type="Self.RxHaveDrugs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prescription">
+        <PropertyRef Name="rxid" />
+      </Principal>
+      <Dependent Role="RxHaveDrugs">
+        <PropertyRef Name="rxidFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EMRDataRxModelStoreContainer">
+    <EntitySet Name="Prescription" EntityType="Self.Prescription" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RxHaveDrugs" EntityType="Self.RxHaveDrugs" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__RxHaveDru__rxidF__49C3F6B7" Association="Self.FK__RxHaveDru__rxidF__49C3F6B7">
+      <End Role="Prescription" EntitySet="Prescription" />
+      <End Role="RxHaveDrugs" EntitySet="RxHaveDrugs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
