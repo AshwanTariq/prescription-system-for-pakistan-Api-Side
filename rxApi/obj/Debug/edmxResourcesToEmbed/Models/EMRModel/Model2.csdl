@@ -9,6 +9,7 @@
     <Property Name="Dstatus" Type="Int32" />
     <Property Name="DType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="ExpDate" Type="DateTime" Precision="3" />
+    <Property Name="ConDisease" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Patient">
     <Key>
@@ -33,6 +34,7 @@
     <Property Name="PatientUName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="rxStatus" Type="Int32" />
     <NavigationProperty Name="RxHaveDrugs" Relationship="Self.FK__RxHaveDru__rxidF__59063A47" FromRole="Prescription" ToRole="RxHaveDrugs" />
+    <Property Name="rxRefil" Type="Int32" />
   </EntityType>
   <EntityType Name="RxHaveDrugs">
     <Key>

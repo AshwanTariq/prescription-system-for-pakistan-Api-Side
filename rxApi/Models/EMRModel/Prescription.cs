@@ -26,6 +26,7 @@ namespace rxApi.Models.EMRModel
         public string PharmacyUName { get; set; }
         public string PatientUName { get; set; }
         public Nullable<int> rxStatus { get; set; }
+        public Nullable<int> rxRefil { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RxHaveDrugs> RxHaveDrugs { get; set; }

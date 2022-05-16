@@ -9,6 +9,7 @@
     <Property Name="Dstatus" Type="int" />
     <Property Name="DType" Type="varchar" MaxLength="255" />
     <Property Name="ExpDate" Type="datetime" />
+    <Property Name="ConDisease" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="Patient">
     <Key>
@@ -32,6 +33,7 @@
     <Property Name="PharmacyUName" Type="varchar" MaxLength="255" />
     <Property Name="PatientUName" Type="varchar" MaxLength="255" />
     <Property Name="rxStatus" Type="int" />
+    <Property Name="rxRefil" Type="int" />
   </EntityType>
   <EntityType Name="RxHaveDrugs">
     <Key>
