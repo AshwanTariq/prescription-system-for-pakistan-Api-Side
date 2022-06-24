@@ -87,3 +87,5 @@ E:\CS8B\apiProject\rxApi\rxApi\obj\Debug\rxApi.csproj.CoreCompileInputs.cache
 E:\CS8B\apiProject\rxApi\rxApi\obj\Debug\rxApi.csproj.CopyComplete
 E:\CS8B\apiProject\rxApi\rxApi\obj\Debug\rxApi.dll
 E:\CS8B\apiProject\rxApi\rxApi\obj\Debug\rxApi.pdb
+E:\CS8B\apiProject\rxApi\rxApi\bin\Geolocation.dll
+E:\CS8B\apiProject\rxApi\rxApi\bin\Geolocation.pdb

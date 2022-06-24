@@ -10,6 +10,7 @@
     <Property Name="DType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="ExpDate" Type="DateTime" Precision="3" />
     <Property Name="ConDisease" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ConDrugs" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Patient">
     <Key>
@@ -22,6 +23,7 @@
     <Property Name="lat" Type="Double" />
     <Property Name="long" Type="Double" />
     <Property Name="disease" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="role" Type="Int32" />
   </EntityType>
   <EntityType Name="Prescription">
     <Key>

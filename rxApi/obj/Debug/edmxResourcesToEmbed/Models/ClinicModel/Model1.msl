@@ -15,6 +15,7 @@
     <EntitySetMapping Name="Doctor">
       <EntityTypeMapping TypeName="ClinicDataRxModel.Doctor">
         <MappingFragment StoreEntitySet="Doctor">
+          <ScalarProperty Name="role" ColumnName="role" />
           <ScalarProperty Name="DUsername" ColumnName="DUsername" />
           <ScalarProperty Name="DPassword" ColumnName="DPassword" />
           <ScalarProperty Name="DName" ColumnName="DName" />

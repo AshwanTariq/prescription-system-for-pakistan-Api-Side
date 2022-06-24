@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ClinicDataRxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ClinicDataRxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Clinic">
           <Key>
             <PropertyRef Name="clinicid" />
@@ -23,6 +23,7 @@
           <Property Name="DPassword" Type="varchar" MaxLength="150" />
           <Property Name="DName" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="DSpeciality" Type="varchar" MaxLength="255" />
+          <Property Name="role" Type="int" />
         </EntityType>
         <Association Name="FK__Clinic__Dusernam__46E78A0C">
           <End Role="Doctor" Type="Self.Doctor" Multiplicity="0..1" />
@@ -44,8 +45,7 @@
             <End Role="Clinic" EntitySet="Clinic" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ClinicDataRxModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -69,6 +69,7 @@
           <Property Name="DName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DSpeciality" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Clinic" Relationship="Self.FK__Clinic__Dusernam__46E78A0C" FromRole="Doctor" ToRole="Clinic" />
+          <Property Name="role" Type="Int32" />
         </EntityType>
         <Association Name="FK__Clinic__Dusernam__46E78A0C">
           <End Role="Doctor" Type="Self.Doctor" Multiplicity="0..1" />
@@ -110,6 +111,7 @@
           <EntitySetMapping Name="Doctor">
             <EntityTypeMapping TypeName="ClinicDataRxModel.Doctor">
               <MappingFragment StoreEntitySet="Doctor">
+                <ScalarProperty Name="role" ColumnName="role" />
                 <ScalarProperty Name="DUsername" ColumnName="DUsername" />
                 <ScalarProperty Name="DPassword" ColumnName="DPassword" />
                 <ScalarProperty Name="DName" ColumnName="DName" />

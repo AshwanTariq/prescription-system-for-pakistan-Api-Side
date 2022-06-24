@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Drugs">
       <EntityTypeMapping TypeName="EMRDataRxModel.Drugs">
         <MappingFragment StoreEntitySet="Drugs">
+          <ScalarProperty Name="ConDrugs" ColumnName="ConDrugs" />
           <ScalarProperty Name="ConDisease" ColumnName="ConDisease" />
           <ScalarProperty Name="Did" ColumnName="Did" />
           <ScalarProperty Name="DName" ColumnName="DName" />
@@ -16,6 +17,7 @@
     <EntitySetMapping Name="Patient">
       <EntityTypeMapping TypeName="EMRDataRxModel.Patient">
         <MappingFragment StoreEntitySet="Patient">
+          <ScalarProperty Name="role" ColumnName="role" />
           <ScalarProperty Name="username" ColumnName="username" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="Name" ColumnName="Name" />

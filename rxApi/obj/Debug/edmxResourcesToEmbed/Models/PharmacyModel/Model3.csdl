@@ -11,6 +11,7 @@
     <Property Name="long" Type="Double" />
     <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="rating" Type="Double" />
+    <Property Name="role" Type="Int32" />
   </EntityType>
   <EntityContainer Name="PharmacyDataRxEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Pharmacy" EntityType="Self.Pharmacy" />

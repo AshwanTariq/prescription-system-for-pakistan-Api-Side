@@ -20,5 +20,6 @@ namespace rxApi.Models.EMRModel
         public string DType { get; set; }
         public Nullable<System.DateTime> ExpDate { get; set; }
         public string ConDisease { get; set; }
+        public string ConDrugs { get; set; }
     }
 }

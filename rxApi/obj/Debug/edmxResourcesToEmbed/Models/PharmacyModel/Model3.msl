@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Pharmacy">
       <EntityTypeMapping TypeName="PharmacyDataRxModel.Pharmacy">
         <MappingFragment StoreEntitySet="Pharmacy">
+          <ScalarProperty Name="role" ColumnName="role" />
           <ScalarProperty Name="username" ColumnName="username" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="Name" ColumnName="Name" />

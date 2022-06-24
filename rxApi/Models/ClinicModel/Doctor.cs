@@ -24,6 +24,7 @@ namespace rxApi.Models.ClinicModel
         public string DPassword { get; set; }
         public string DName { get; set; }
         public string DSpeciality { get; set; }
+        public Nullable<int> role { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Clinic> Clinic { get; set; }

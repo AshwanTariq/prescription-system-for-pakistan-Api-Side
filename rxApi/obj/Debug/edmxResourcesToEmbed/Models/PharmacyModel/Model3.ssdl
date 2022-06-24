@@ -11,6 +11,7 @@
     <Property Name="long" Type="float" />
     <Property Name="address" Type="varchar" MaxLength="255" />
     <Property Name="rating" Type="float" />
+    <Property Name="role" Type="int" />
   </EntityType>
   <EntityContainer Name="PharmacyDataRxModelStoreContainer">
     <EntitySet Name="Pharmacy" EntityType="Self.Pharmacy" Schema="dbo" store:Type="Tables" />

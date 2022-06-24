@@ -10,6 +10,7 @@
     <Property Name="DType" Type="varchar" MaxLength="255" />
     <Property Name="ExpDate" Type="datetime" />
     <Property Name="ConDisease" Type="varchar(max)" />
+    <Property Name="ConDrugs" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="Patient">
     <Key>
@@ -22,6 +23,7 @@
     <Property Name="lat" Type="float" />
     <Property Name="long" Type="float" />
     <Property Name="disease" Type="varchar" MaxLength="1000" />
+    <Property Name="role" Type="int" />
   </EntityType>
   <EntityType Name="Prescription">
     <Key>

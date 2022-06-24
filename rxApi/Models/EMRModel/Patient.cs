@@ -21,5 +21,6 @@ namespace rxApi.Models.EMRModel
         public Nullable<double> lat { get; set; }
         public Nullable<double> @long { get; set; }
         public string disease { get; set; }
+        public Nullable<int> role { get; set; }
     }
 }

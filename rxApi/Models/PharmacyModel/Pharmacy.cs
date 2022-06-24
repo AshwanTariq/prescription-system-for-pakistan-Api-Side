@@ -21,5 +21,6 @@ namespace rxApi.Models.PharmacyModel
         public Nullable<double> @long { get; set; }
         public string address { get; set; }
         public Nullable<double> rating { get; set; }
+        public Nullable<int> role { get; set; }
     }
 }

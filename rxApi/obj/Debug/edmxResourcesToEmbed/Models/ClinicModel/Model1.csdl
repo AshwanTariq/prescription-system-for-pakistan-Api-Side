@@ -20,6 +20,7 @@
     <Property Name="DName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="DSpeciality" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Clinic" Relationship="Self.FK__Clinic__Dusernam__46E78A0C" FromRole="Doctor" ToRole="Clinic" />
+    <Property Name="role" Type="Int32" />
   </EntityType>
   <Association Name="FK__Clinic__Dusernam__46E78A0C">
     <End Role="Doctor" Type="Self.Doctor" Multiplicity="0..1" />

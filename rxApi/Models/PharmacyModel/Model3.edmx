@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PharmacyDataRxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="PharmacyDataRxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Pharmacy">
           <Key>
             <PropertyRef Name="username" />
@@ -16,12 +16,12 @@
           <Property Name="long" Type="float" />
           <Property Name="address" Type="varchar" MaxLength="255" />
           <Property Name="rating" Type="float" />
+          <Property Name="role" Type="int" />
         </EntityType>
         <EntityContainer Name="PharmacyDataRxModelStoreContainer">
           <EntitySet Name="Pharmacy" EntityType="Self.Pharmacy" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PharmacyDataRxModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -36,6 +36,7 @@
           <Property Name="long" Type="Double" />
           <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="rating" Type="Double" />
+          <Property Name="role" Type="Int32" />
         </EntityType>
         <EntityContainer Name="PharmacyDataRxEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Pharmacy" EntityType="Self.Pharmacy" />
@@ -49,6 +50,7 @@
           <EntitySetMapping Name="Pharmacy">
             <EntityTypeMapping TypeName="PharmacyDataRxModel.Pharmacy">
               <MappingFragment StoreEntitySet="Pharmacy">
+                <ScalarProperty Name="role" ColumnName="role" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

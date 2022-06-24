@@ -18,6 +18,7 @@
     <Property Name="DPassword" Type="varchar" MaxLength="150" />
     <Property Name="DName" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="DSpeciality" Type="varchar" MaxLength="255" />
+    <Property Name="role" Type="int" />
   </EntityType>
   <Association Name="FK__Clinic__Dusernam__46E78A0C">
     <End Role="Doctor" Type="Self.Doctor" Multiplicity="0..1" />
